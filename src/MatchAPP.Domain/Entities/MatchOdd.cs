@@ -13,6 +13,8 @@ namespace MatchAPP.Domain.Entities
         public int MatchId { get; set; }
         [Required]
         public Match Match { get; set; }
+        [MaxLength(3)]
+        public string Specifier { get; set; }
         public double Odd { get; set; }
     }
 

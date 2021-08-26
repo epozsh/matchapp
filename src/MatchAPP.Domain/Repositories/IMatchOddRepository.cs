@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MatchAPP.Domain.Repositories
 {
-    public interface IMatchOddRepository : IAsyncRepository<MatchOdd>
+    public interface IMatchOddRepository : IGenericRepository<MatchOdd>
     {
  
     }
