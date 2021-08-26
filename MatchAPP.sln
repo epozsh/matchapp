@@ -12,11 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{8DE966C5-4
 		docs\Readme.md = docs\Readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchAPP.Domain", "src\MatchAPP.Domain\MatchAPP.Domain.csproj", "{51B1DA92-F176-4ECA-AA25-1D0FE23C9F52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchAPP.Domain", "src\MatchAPP.Domain\MatchAPP.Domain.csproj", "{51B1DA92-F176-4ECA-AA25-1D0FE23C9F52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchAPP.Data", "src\MatchAPP.Data\MatchAPP.Data.csproj", "{50C37BB5-1C51-4FD1-BE8A-6DF261C9F4F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchAPP.Data", "src\MatchAPP.Data\MatchAPP.Data.csproj", "{50C37BB5-1C51-4FD1-BE8A-6DF261C9F4F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchAPP.UnitTest", "src\MatchAPP.UnitTest\MatchAPP.UnitTest.csproj", "{F5C96A60-8446-4D33-9D76-042FB387F144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchAPP.UnitTest", "src\MatchAPP.UnitTest\MatchAPP.UnitTest.csproj", "{F5C96A60-8446-4D33-9D76-042FB387F144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
