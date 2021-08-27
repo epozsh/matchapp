@@ -5,16 +5,16 @@ using System.Text;
 
 namespace MatchAPP.Domain.Entities
 {
-    public class MatchOdd
+    // Todo: Check changing naming to Odd instead of MatchOdd
+    public class MatchOdd : BaseEntity
     {
-        [Key]
-        public int ID { get; set; }
         [Required]
         public int MatchId { get; set; }
         [Required]
         public Match Match { get; set; }
         [MaxLength(3)]
         public string Specifier { get; set; }
+        [Required]
         public double Odd { get; set; }
     }
 

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MatchAPP.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MatchAPP.Domain.Entities
 {
-    public class Match
+    public class Match : BaseEntity
     {
         public Match()
         {
@@ -13,8 +14,6 @@ namespace MatchAPP.Domain.Entities
 
         }
 
-        [Key]
-        public int ID { get; set; }
         public string Description { get; set; }
         [Required]
         public string MatchDate { get; set; }
@@ -33,9 +32,5 @@ namespace MatchAPP.Domain.Entities
     }
        
 
-    public enum SportType
-    {
-        Football = 1,
-        Basketball = 2
-    }
+  
 }

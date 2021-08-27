@@ -1,6 +1,7 @@
 ﻿using MatchAPP.Data;
 using MatchAPP.Data.Repositories;
 using MatchAPP.Domain.Entities;
+using MatchAPP.Domain.Enums;
 using MatchAPP.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

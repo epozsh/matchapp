@@ -39,18 +39,18 @@ namespace MatchAPP.Data.Repositories
             return entity;
         }
 
-        public async Task<T> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var entity = await _context.Set<T>().FindAsync(id);
             if (entity == null)
             {
-                return entity;
+                return false;
             }
 
             _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
 
-            return entity;
+            return true;
         }
     }
 }
