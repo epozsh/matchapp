@@ -5,18 +5,18 @@ using System.Text;
 namespace MatchAPP.Domain.Services
 {
     /// <summary>
+    /// Wrapping all repositories.
     /// This will be used by client e.g. Api
     /// </summary>
-    public class MatchRepositoryClientService
+    public class MatchRepositoryClientService : IMatchRepositoryClientService
     {
-        public readonly IMatchRepositoryService MatchRepositoryService;
-        public readonly IMatchOddRepositoryService MatchOddRepositoryServiceService;
+        public IMatchRepositoryService MatchRepositoryService { get; }
+        public IMatchOddRepositoryService MatchOddRepositoryServiceService { get; }
 
         public MatchRepositoryClientService(IMatchRepositoryService matchRepository, IMatchOddRepositoryService matchOddRepositoryService)
         {
             MatchRepositoryService = matchRepository;
             MatchOddRepositoryServiceService = matchOddRepositoryService;
         }
-
     }
 }

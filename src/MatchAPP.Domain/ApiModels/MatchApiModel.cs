@@ -5,7 +5,6 @@ namespace MatchAPP.Domain.ApiModels
 {
     public class MatchApiModel
     {
-        [Required]
         public int ID { get; set; }
         public string Description { get; set; }
         public string MatchDate { get; set; }
