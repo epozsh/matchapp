@@ -75,7 +75,7 @@ namespace MatchAPP.Domain.Services
             return _mapper.Map<MatchApiModel>(match);
         }
 
-        public async Task<MatchApiModel> UpdateMatch(MatchApiModel model)
+        public async Task<MatchApiModel> UpdateMatch(MatchUpdateApiModel model)
         {
             var matchMapped = _mapper.Map<Match>(model);
             var match = await _matchRepository.UpdateAsync(matchMapped);

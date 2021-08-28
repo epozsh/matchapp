@@ -39,4 +39,9 @@ namespace MatchAPP.Domain.ApiModels
         public SportType Sport { get; set; }
     }
 
+    public class MatchUpdateApiModel : MatchAddApiModel
+    {
+        public int ID { get; set; }
+    }
+
 }

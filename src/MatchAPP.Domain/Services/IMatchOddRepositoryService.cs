@@ -13,7 +13,7 @@ namespace MatchAPP.Domain.Services
         Task<IList<MatchOddApiModel>> GetAllMatchOdds(); // Get All Odds
         Task<MatchOddApiModel> GetMatchOddById(int id);
         Task<MatchOddApiModel> AddMatchOdd(MatchOddAddApiModel model);
-        Task<MatchOddApiModel> UpdateMatchOdd(MatchOddApiModel model);
+        Task<MatchOddApiModel> UpdateMatchOdd(MatchOddUpdateApiModel model);
         Task<bool> DeleteMatchOdd(int id);
     }
 }

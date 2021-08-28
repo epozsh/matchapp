@@ -15,6 +15,7 @@ namespace MatchAPP.Domain.Mapper
             // Mapping from Api model to Entity 
             cfg.CreateMap<MatchOddApiModel, MatchOdd>();
             cfg.CreateMap<MatchOddAddApiModel, MatchOdd>();
+            cfg.CreateMap<MatchOddUpdateApiModel, MatchOdd>();
         }
     }
 }

@@ -73,7 +73,7 @@ namespace MatchAPP.API.Controllers
 
         // PUT api/match/1
         [HttpPut("{id}")]
-        public async Task<ActionResult<MatchApiModel>> Put(int id, [FromBody] MatchApiModel model)
+        public async Task<ActionResult<MatchApiModel>> Put(int id, [FromBody] MatchUpdateApiModel model)
         {
             if (!ModelState.IsValid)
             {

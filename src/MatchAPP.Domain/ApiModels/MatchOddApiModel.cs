@@ -5,7 +5,6 @@ namespace MatchAPP.Domain.ApiModels
 {
     public class MatchOddApiModel
     {
-        [Required]
         public int ID { get; set; }
         public int MatchId { get; set; }
         public string Match { get; set; } // TeamA - TeamB
@@ -21,5 +20,10 @@ namespace MatchAPP.Domain.ApiModels
         public string Specifier { get; set; }
         [Required]
         public double Odd { get; set; }
+    }
+
+    public class MatchOddUpdateApiModel : MatchOddAddApiModel
+    {
+        public int ID { get; set; }
     }
 }

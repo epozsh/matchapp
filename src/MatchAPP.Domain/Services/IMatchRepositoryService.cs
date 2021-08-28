@@ -13,7 +13,7 @@ namespace MatchAPP.Domain.Services
         Task<IList<MatchApiModel>> GetAllMatches();
         Task<MatchApiModel> GetMatchById(int id);
         Task<MatchApiModel> AddMatch(MatchAddApiModel model);
-        Task<MatchApiModel> UpdateMatch(MatchApiModel model);
+        Task<MatchApiModel> UpdateMatch(MatchUpdateApiModel model);
         Task<bool> DeleteMatch(int id);
     }
 }
