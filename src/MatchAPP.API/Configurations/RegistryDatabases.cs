@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
+using System;
 
 namespace MatchAPP.API.Configurations
 {
@@ -15,15 +16,22 @@ namespace MatchAPP.API.Configurations
         }
 
         /// <summary>
-        /// Migrate database with migrations if not applied
+        /// Migrate database with migrations if not applied and exist
         /// </summary>
         /// <param name="app"></param>
         public static void UseDatabaseMigrate(this IApplicationBuilder app)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
+            try
             {
-                // Takes all of our migrations files and apply them against the database in case they are not implemented
-                serviceScope.ServiceProvider.GetService<MatchContext>().Database.Migrate();
+                using (var serviceScope = app.ApplicationServices.CreateScope())
+                {
+                    // Takes all of our migrations files and apply them against the database in case they are not implemented
+                    serviceScope.ServiceProvider.GetService<MatchContext>().Database.Migrate();
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
