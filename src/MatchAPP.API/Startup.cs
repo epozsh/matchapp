@@ -17,11 +17,17 @@ namespace MatchAPP.API
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; private set; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -63,6 +69,9 @@ namespace MatchAPP.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Apply Migrations to database
+            app.UseDatabaseMigrate();
 
             app.UseHttpsRedirection();
 

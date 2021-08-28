@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  mssql-server:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+       SA_PASSWORD: "A@12345678b"
+       ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      CONNECTIONSTRINGS__MatchAppDB: "Server=mssql-server, 1433; Database=master; User ID=sa; Password=A@12345678b"
+    depends_on: 
+      - mssql-server

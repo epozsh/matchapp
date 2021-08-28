@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster
+WORKDIR /app
+ENV ASPNETCORE_URLS="http://*:5000"
+ENV ASPNETCORE_ENVIRONMENT="Production"
+COPY bin/Release/netcoreapp3.1/debian.8-x64/publish /app
+
+# Apply Migration to Database
+COPY setup-mssql.sh setup-mssql.sh
+RUN dotnet tool install -g dotnet-ef --version 3.1.18
+ENV PATH $PATH:/root/.dotnet/tools
+RUN chmod +x ./setup-mssql.sh
+CMD /bin/bash ./setup-mssql.sh
+
+EXPOSE 5000
+ENTRYPOINT ["dotnet", "MatchAPP.API.dll"]
