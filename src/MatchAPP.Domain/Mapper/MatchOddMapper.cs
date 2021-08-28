@@ -9,7 +9,8 @@ namespace MatchAPP.Domain.Mapper
         public static void Set(IMapperConfigurationExpression cfg)
         {
             // Mapping from Entity to Api model
-            cfg.CreateMap<MatchOdd, MatchOddApiModel>();
+            cfg.CreateMap<MatchOdd, MatchOddApiModel>()
+               .ForMember(dest => dest.Match, src => src.MapFrom(s => $"{s.Match.TeamA}-{s.Match.TeamB}"));
 
             // Mapping from Api model to Entity 
             cfg.CreateMap<MatchOddApiModel, MatchOdd>();

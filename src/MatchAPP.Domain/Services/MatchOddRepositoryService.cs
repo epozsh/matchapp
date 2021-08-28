@@ -25,7 +25,7 @@ namespace MatchAPP.Domain.Services
         {
             var cachedMatchesOdds = await _memoryCache.GetOrCreateAsync<IList<MatchOddApiModel>>(cacheKey, async (c) =>
             {
-                var matchesOdds = await _matchOddRepository.GetAllAsync();
+                var matchesOdds = await _matchOddRepository.GetAllAsync(x => x.Match);
 
                 if (matchesOdds.Any())
                 {
@@ -40,14 +40,16 @@ namespace MatchAPP.Domain.Services
         public async Task<MatchOddApiModel> GetMatchOddById(int id)
         {
             var cachedMatchesOdds = _memoryCache.Get<IList<MatchOddApiModel>>(cacheKey);
-            var cachedMatchOdd = cachedMatchesOdds.FirstOrDefault(m => m.ID == id);
+            var cachedMatchOdd = cachedMatchesOdds?.FirstOrDefault(m => m.ID == id);
 
             if (cachedMatchOdd == null)
             {
-                var match = await _matchOddRepository.GetByIdAsync(id);
+                var match = await _matchOddRepository.GetByIdAsync(id, x => x.Match);
                 if (match != null)
                 {
                     var mappedMatchOdd = _mapper.Map<MatchOddApiModel>(match);
+
+                    if (cachedMatchesOdds == null) cachedMatchesOdds = new List<MatchOddApiModel>();
                     cachedMatchesOdds.Add(mappedMatchOdd);
 
                     _memoryCache.Set(cacheKey, mappedMatchOdd, new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(defaultSlideExpirationInMinutes)));

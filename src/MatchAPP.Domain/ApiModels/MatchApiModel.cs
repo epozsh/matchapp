@@ -1,4 +1,5 @@
 ﻿using MatchAPP.Domain.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MatchAPP.Domain.ApiModels
@@ -12,6 +13,13 @@ namespace MatchAPP.Domain.ApiModels
         public string TeamA { get; set; }
         public string TeamB { get; set; }
         public string Sport { get; set; }
+
+        public IList<MatchOddApiModel> Odds { get; set; }
+
+        public MatchApiModel()
+        {
+            Odds = new List<MatchOddApiModel>();
+        }
     }
 
     public class MatchAddApiModel
@@ -30,4 +38,5 @@ namespace MatchAPP.Domain.ApiModels
         [Required]
         public SportType Sport { get; set; }
     }
+
 }

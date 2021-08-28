@@ -2,26 +2,49 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MatchAPP.Data.Repositories
 {
-    public abstract class GenericRepository<T, C> : IGenericRepository<T> where T : class 
-                                                                          where C: DbContext
+    public abstract class GenericRepository<T, C> : IGenericRepository<T> where T : class
+                                                                          where C : DbContext
     {
         protected readonly C _context;
         public GenericRepository(C context)
         {
             _context = context;
         }
-        public async Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync(params Expression<Func<T, object>>[] propertiesToInclude)
         {
+            if(propertiesToInclude.Length > 0)
+            {
+                var query = _context.Set<T>().AsQueryable();
+                foreach (var expression in propertiesToInclude)
+                {
+                    query = query.Include(expression);
+                }
+
+                return await query.ToListAsync();
+            }
             return await _context.Set<T>().ToListAsync();
+
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] propertiesToInclude)
         {
+            if (propertiesToInclude.Length > 0)
+            {
+                var keyProperty = _context.Model.FindEntityType(typeof(T)).FindPrimaryKey().Properties[0];
+                var query = _context.Set<T>().AsQueryable();
+                foreach (var expression in propertiesToInclude)
+                {
+                    query = query.Include(expression);
+                }
+                return await query.FirstOrDefaultAsync(s => EF.Property<int>(s, keyProperty.Name) == id);
+            }
             return await _context.Set<T>().FindAsync(id);
         }
 
@@ -52,5 +75,6 @@ namespace MatchAPP.Data.Repositories
 
             return true;
         }
+
     }
 }
