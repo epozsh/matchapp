@@ -38,7 +38,7 @@ namespace MatchAPP.Data.Repositories
             if (propertiesToInclude.Length > 0)
             {
                 var keyProperty = _context.Model.FindEntityType(typeof(T)).FindPrimaryKey().Properties[0];
-                var query = _context.Set<T>().AsQueryable();
+                var query = _context.Set<T>().AsNoTracking().AsQueryable();
                 foreach (var expression in propertiesToInclude)
                 {
                     query = query.Include(expression);
